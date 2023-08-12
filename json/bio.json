@@ -1,0 +1,29 @@
+{
+    "username": "coswat",
+    "friends": "Currently no one 😅",
+    "github": "coswat",
+    "twitter": "coswatX",
+    "website": "https://coswat.vercel.app",
+
+    "realName": "Abhishek B",
+    "class": "11th 😁",
+    "age": 16,
+    "location": {
+        "latitude": 8.691677,
+        "longitude": 76.843369,
+        "msg": "Come Home 😁"
+    },
+    "birthday": {
+        "date": "2nd October",
+        "stickerId": "CAACAgEAAxkBAAEB_xtk1lwtiDSTU7QlRQ2ycKfiGi_AxgAC6gIAAqG4GUT_C0JPbViXIDAE"
+    },
+    "langs": "PHP \nTypeScript \nRust ",
+    "hobbies": {
+        "msg": "Programming ❤",
+        "stickerId": "CAACAgIAAxkBAAEB_0Fk1qLXanj2x5NzemtrydN1nYxsVAACvAwAAocoMEntN5GZWCFoBDAE"
+    },
+
+    "welcomeMessage": "Welcome to Bio",
+    "errorMessage": "Invalid Message 💀",
+    "welcomeSticker": "CAACAgIAAxkBAAEB_x9k1l2EdUiuKNLN_guQXp8I4hjGVgACQhAAAjPFKUmQDtQRpypKgjAE"
+}
