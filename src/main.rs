@@ -5,7 +5,8 @@ mod keyboard;
 
 use crate::handler as bothandler;
 use dotenv::dotenv;
-use teloxide::Bot;
+use std::env;
+use teloxide::{prelude::*, update_listeners::webhooks};
 
 #[tokio::main]
 async fn main() {
@@ -15,5 +16,19 @@ async fn main() {
 
     let bot: Bot = Bot::from_env();
 
-    teloxide::repl(bot, bothandler::init).await;
+    let port: u16 = env::var("PORT")
+        .expect("PORT env variable is not set")
+        .parse()
+        .expect("PORT env variable value is not an integer");
+
+    let addr = ([0, 0, 0, 0], port).into();
+
+    let host = env::var("HOST").expect("HOST env variable is not set");
+    let url = format!("https://{host}/webhook").parse().unwrap();
+
+    let listener = webhooks::axum(bot.clone(), webhooks::Options::new(addr, url))
+        .await
+        .expect("Couldn't setup webhook");
+
+    teloxide::repl_with_listener(bot, bothandler::init, listener).await;
 }
