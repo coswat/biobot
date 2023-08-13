@@ -15,21 +15,6 @@ async fn main() {
 
     let bot: Bot = Bot::from_env();
 
-    teloxide::repl(bot, bothandler::init).await;
-}
-
-/*
-
-FOR DEPLOYMENT USE THIS MAIN FUNCTION INSTEAD OF THE ABOVE ONE
-
-#[tokio::main]
-async fn main() {
-    pretty_env_logger::init();
-    log::info!("Starting bio bot...");
-    dotenv().ok();
-
-    let bot: Bot = Bot::from_env();
-
     let port: u16 = env::var("PORT")
         .expect("PORT env variable is not set")
         .parse()
@@ -45,6 +30,21 @@ async fn main() {
         .expect("Couldn't setup webhook");
 
     teloxide::repl_with_listener(bot, bothandler::init, listener).await;
+}
+
+/*
+
+FOR DEVELOPMENT USE THIS MAIN FUNCTION INSTEAD OF THE ABOVE ONE
+
+#[tokio::main]
+async fn main() {
+    pretty_env_logger::init();
+    log::info!("Starting bio bot...");
+    dotenv().ok();
+
+    let bot: Bot = Bot::from_env();
+
+    teloxide::repl(bot, bothandler::init).await;
 }
 
 */
