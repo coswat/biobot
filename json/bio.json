@@ -1,9 +1,18 @@
 {
     "username": "coswat",
     "friends": "Currently no one 😅",
-    "github": "coswat",
-    "twitter": "coswatX",
-    "website": "https://coswat.vercel.app",
+    "github": {
+        "username": "coswat",
+        "msg": "My official Github account"
+    },
+    "twitter": {
+        "username": "coswatX",
+        "msg": "My official Twitter account"
+    },
+    "website": {
+        "url": "https://coswat.vercel.app",
+        "msg": "Dont be mad at me 🥺"
+    },
 
     "realName": "Abhishek B",
     "class": "11th 😁",

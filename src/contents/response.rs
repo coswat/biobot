@@ -4,9 +4,9 @@ use serde::{Deserialize, Serialize};
 pub struct ResponseContent {
     pub username: String,
     pub friends: String,
-    pub github: String,
-    pub twitter: String,
-    pub website: String,
+    pub github: Github,
+    pub twitter: Twitter,
+    pub website: Website,
 
     #[serde(rename = "realName")]
     pub real_name: String,
@@ -44,4 +44,22 @@ pub struct Birthday {
     pub date: String,
     #[serde(rename = "stickerId")]
     pub sticker_id: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Github {
+    pub username: String,
+    pub msg: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Twitter {
+    pub username: String,
+    pub msg: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Website {
+    pub url: String,
+    pub msg: String,
 }

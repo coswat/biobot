@@ -5,8 +5,22 @@ mod keyboard;
 
 use crate::handler as bothandler;
 use dotenv::dotenv;
-use std::env;
-use teloxide::{prelude::*, update_listeners::webhooks};
+use teloxide::Bot;
+
+#[tokio::main]
+async fn main() {
+    pretty_env_logger::init();
+    log::info!("Starting bio bot...");
+    dotenv().ok();
+
+    let bot: Bot = Bot::from_env();
+
+    teloxide::repl(bot, bothandler::init).await;
+}
+
+/*
+
+FOR DEPLOYMENT USE THIS MAIN FUNCTION INSTEAD OF THE ABOVE ONE
 
 #[tokio::main]
 async fn main() {
@@ -32,3 +46,5 @@ async fn main() {
 
     teloxide::repl_with_listener(bot, bothandler::init, listener).await;
 }
+
+*/
