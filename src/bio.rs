@@ -78,8 +78,7 @@ pub async fn class(bot: &Bot, msg: &Message, cnt: ResponseContent) -> ResponseRe
 }
 
 pub async fn age(bot: &Bot, msg: &Message, cnt: ResponseContent) -> ResponseResult<()> {
-    let text = format!("{} ✌", cnt.age);
-    bot.send_message(msg.chat.id, text).await?;
+    bot.send_message(msg.chat.id, cnt.age).await?;
     Ok(())
 }
 

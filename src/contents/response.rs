@@ -11,7 +11,7 @@ pub struct ResponseContent {
     #[serde(rename = "realName")]
     pub real_name: String,
     pub class: String,
-    pub age: u8,
+    pub age: String,
     pub location: Location,
     pub birthday: Birthday,
     pub langs: String,
