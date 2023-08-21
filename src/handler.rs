@@ -1,15 +1,14 @@
 use crate::bio;
 use crate::contents::{get_buttons, get_contents, Buttons, ResponseContent};
-use teloxide::{requests::ResponseResult, types::Message, Bot};
+use teloxide::{types::Message, Bot};
 
-pub async fn init(bot: Bot, msg: Message) -> ResponseResult<()> {
+pub async fn init(bot: Bot, msg: Message) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     let contents: ResponseContent = get_contents().await;
     let button: Buttons = get_buttons().await;
     let text = &msg.text().unwrap().to_string();
     match text.as_str() {
-        "/start" => bio::welcome(&bot, &msg, contents).await?,
         _ if button.bio == *text => bio::bio(&bot, &msg, contents).await?,
-        _ if button.back == *text => bio::welcome(&bot, &msg, contents).await?,
+        _ if button.back == *text => bio::welcome(bot, msg).await?,
         _ if button.username == *text => bio::username(&bot, &msg, contents).await?,
         _ if button.friends == *text => bio::friends(&bot, &msg, contents).await?,
         _ if button.github == *text => bio::github(&bot, &msg, contents).await?,

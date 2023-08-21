@@ -1,11 +1,21 @@
+use crate::command::{Command, State};
 use crate::contents::ResponseContent;
 use crate::keyboard;
-use teloxide::prelude::*;
-use teloxide::types::{InputFile, ParseMode};
+use teloxide::{
+    dispatching::dialogue::InMemStorage,
+    prelude::*,
+    types::{InputFile, ParseMode},
+    utils::command::BotCommands,
+};
 
-pub async fn welcome(bot: &Bot, msg: &Message, cnt: ResponseContent) -> ResponseResult<()> {
+pub async fn welcome(
+    bot: Bot,
+    msg: Message,
+) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     let keyboard = keyboard::default().await;
-    let sticker = InputFile::file_id(cnt.welcome_sticker);
+    let sticker = InputFile::file_id(
+        "CAACAgIAAxkBAAEB_x9k1l2EdUiuKNLN_guQXp8I4hjGVgACQhAAAjPFKUmQDtQRpypKgjAE".to_string(),
+    );
     bot.send_sticker(msg.chat.id, sticker).await?;
     bot.send_message(msg.chat.id, "Welcome")
         .parse_mode(ParseMode::Html)
@@ -110,5 +120,22 @@ pub async fn hobbies(bot: &Bot, msg: &Message, cnt: ResponseContent) -> Response
     let sticker = InputFile::file_id(cnt.hobbies.sticker_id);
     bot.send_message(msg.chat.id, cnt.hobbies.msg).await?;
     bot.send_sticker(msg.chat.id, sticker).await?;
+    Ok(())
+}
+
+pub async fn help(bot: Bot, msg: Message) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+    bot.send_message(msg.chat.id, Command::descriptions().to_string())
+        .await?;
+    Ok(())
+}
+
+pub async fn cancel(
+    bot: Bot,
+    dialogue: Dialogue<State, InMemStorage<State>>,
+    msg: Message,
+) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+    bot.send_message(msg.chat.id, "Cancelling ongoing action.")
+        .await?;
+    dialogue.exit().await?;
     Ok(())
 }
