@@ -1,7 +1,49 @@
 ## Telgeram Bio Bot
 
+Highly custamisable bio bot using Rust, ( teloxid x tokio ) specially designed for programmers
 
-Introducing the ultimate Telegram bio bot tailored specifically for programmers and built using the power of Rust programming language with the Teloxide and Tokio frameworks. This innovative bot revolutionizes the way programmers manage their bios on Telegram by offering a seamless and interactive experience. Leveraging the capabilities of Rust ensures not only high performance but also robustness and security, making it an ideal choice for developers who value efficiency and reliability.
+[Demo Bot](https://telegram.dog/coswatbot)
 
-With its intuitive interface and customizable features, this bot allows programmers to effortlessly update and personalize their Telegram bios according to their preferences. The use of JSON for customization provides unparalleled flexibility, enabling users to fine-tune every aspect of their bio presentation, from showcasing their programming languages and skills to sharing their GitHub repositories and recent coding achievements. This level of customization empowers programmers to express their uniqueness and expertise in a dynamic and eye-catching manner.
+Key features
 
+- Custamisable Buttons
+- Custamisable Responses
+- Custom sponsed button
+- Integrated with Telegram Payments
+
+## Setup
+
+Lets checkout the env variables first
+
+```.env
+# Bot token
+TELOXIDE_TOKEN=
+
+# Port, ex: 3000
+PORT=3000
+
+# Host, ( if heroku, then yourapp.herokuapp.com )
+HOST=
+
+# Devlopment mode ( set false while production )
+
+DEV=true
+
+# Payment token from @BotFather
+
+PAYMENT_TOKEN=xxx
+```
+
+After setuping these you can test this by, 
+
+```bash
+cargo build --release
+```
+
+then 
+
+```bash
+cargo run --release
+```
+
+![Bio Bot](https://github-production-user-asset-6210df.s3.amazonaws.com/97345827/263537735-487e779b-2f1c-4c54-86c5-76a4441acdca.jpg)
