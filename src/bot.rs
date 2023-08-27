@@ -60,8 +60,7 @@ fn schema() -> UpdateHandler<Box<dyn Error + Send + Sync + 'static>> {
         .branch(
             case![State::Start]
                 .branch(case![Command::Help].endpoint(bio::help))
-                .branch(case![Command::Start].endpoint(bio::welcome))
-                .branch(case![Command::Sponser].endpoint(sponser)),
+                .branch(case![Command::Start].endpoint(bio::welcome)),
         )
         .branch(case![Command::Cancel].endpoint(bio::cancel));
 
@@ -75,12 +74,4 @@ fn schema() -> UpdateHandler<Box<dyn Error + Send + Sync + 'static>> {
                 .branch(Update::filter_callback_query().endpoint(payment::callback_handler)),
         )
         .branch(Update::filter_pre_checkout_query().endpoint(payment::pre_checkout_handler))
-}
-
-pub async fn sponser(
-    bot: Bot,
-    msg: Message,
-) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
-    //
-    Ok(())
 }

@@ -3,10 +3,7 @@ use crate::contents::ResponseContent;
 use crate::keyboard;
 use std::error::Error;
 use teloxide::{
-    dispatching::dialogue::InMemStorage,
-    prelude::*,
-    types::{InputFile, ParseMode},
-    utils::command::BotCommands,
+    dispatching::dialogue::InMemStorage, prelude::*, types::InputFile, utils::command::BotCommands,
 };
 use url::Url;
 
@@ -21,7 +18,6 @@ pub async fn welcome(
     bot.set_my_commands(Command::bot_commands()).await?;
     bot.send_sticker(msg.chat.id, sticker).await?;
     bot.send_message(msg.chat.id, "Welcome")
-        .parse_mode(ParseMode::Html)
         .reply_markup(keyboard)
         .await?;
     Ok(())
@@ -30,7 +26,6 @@ pub async fn welcome(
 pub async fn bio(bot: &Bot, msg: &Message, cnt: ResponseContent) -> ResponseResult<()> {
     let keyboard = keyboard::bio().await;
     bot.send_message(msg.chat.id, cnt.welcome_msg)
-        .parse_mode(ParseMode::Html)
         .reply_markup(keyboard)
         .await?;
     Ok(())

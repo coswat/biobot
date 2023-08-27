@@ -18,6 +18,4 @@ pub enum Command {
     Start,
     #[command(description = "cancel ongoing action")]
     Cancel,
-    #[command(description = "create an invoice")]
-    Sponser,
 }
