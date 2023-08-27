@@ -1,8 +1,10 @@
 use crate::bio;
 use crate::command::{Command, State};
 use crate::handler as bothandler;
+use crate::payment;
 use dotenv::dotenv;
 use std::env;
+use std::error::Error;
 use teloxide::{
     dispatching::{dialogue, dialogue::InMemStorage, UpdateHandler},
     prelude::*,
@@ -52,19 +54,33 @@ pub async fn run() {
     }
 }
 
-fn schema() -> UpdateHandler<Box<dyn std::error::Error + Send + Sync + 'static>> {
+fn schema() -> UpdateHandler<Box<dyn Error + Send + Sync + 'static>> {
     use dptree::case;
     let command_handler = teloxide::filter_command::<Command, _>()
         .branch(
             case![State::Start]
                 .branch(case![Command::Help].endpoint(bio::help))
-                .branch(case![Command::Start].endpoint(bio::welcome)),
+                .branch(case![Command::Start].endpoint(bio::welcome))
+                .branch(case![Command::Sponser].endpoint(sponser)),
         )
         .branch(case![Command::Cancel].endpoint(bio::cancel));
 
     let message_handler = Update::filter_message()
         .branch(command_handler)
-        .branch(case![State::ProccessPayment].endpoint(bio::help))
         .branch(dptree::endpoint(bothandler::init));
-    dialogue::enter::<Update, InMemStorage<State>, State, _>().branch(message_handler)
+    dptree::entry()
+        .branch(
+            dialogue::enter::<Update, InMemStorage<_>, State, _>()
+                .branch(message_handler)
+                .branch(Update::filter_callback_query().endpoint(payment::callback_handler)),
+        )
+        .branch(Update::filter_pre_checkout_query().endpoint(payment::pre_checkout_handler))
+}
+
+pub async fn sponser(
+    bot: Bot,
+    msg: Message,
+) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+    //
+    Ok(())
 }

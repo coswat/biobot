@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 pub struct Buttons {
     pub bio: String,
     pub username: String,
-    pub friends: String,
+    pub sponser: String,
     pub github: String,
     pub twitter: String,
     pub website: String,

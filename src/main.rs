@@ -4,6 +4,7 @@ mod command;
 mod contents;
 mod handler;
 mod keyboard;
+mod payment;
 
 #[tokio::main]
 async fn main() {

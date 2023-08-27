@@ -4,7 +4,6 @@ use teloxide::utils::command::BotCommands;
 pub enum State {
     #[default]
     Start,
-    ProccessPayment,
 }
 
 #[derive(BotCommands, Clone)]
@@ -19,4 +18,6 @@ pub enum Command {
     Start,
     #[command(description = "cancel ongoing action")]
     Cancel,
+    #[command(description = "create an invoice")]
+    Sponser,
 }

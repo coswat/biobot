@@ -1,7 +1,11 @@
 mod buttons;
 mod getter;
 mod response;
+mod sponser;
 
-pub use self::buttons::Buttons;
-pub use self::getter::{get_buttons, get_contents};
-pub use self::response::ResponseContent;
+pub use self::{
+    buttons::Buttons,
+    getter::{get_buttons, get_contents, get_sponser_data},
+    response::ResponseContent,
+    sponser::{Item, Sponser},
+};

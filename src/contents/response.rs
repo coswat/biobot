@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ResponseContent {
     pub username: String,
-    pub friends: String,
+    pub sponser: Sponser,
     pub github: Github,
     pub twitter: Twitter,
     pub website: Website,
@@ -21,8 +21,8 @@ pub struct ResponseContent {
     pub welcome_msg: String,
     #[serde(rename = "errorMessage")]
     pub error_msg: String,
-    #[serde(rename = "welcomeSticker")]
-    pub welcome_sticker: String,
+    #[serde(rename = "sponserImage")]
+    pub sponser_image: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -49,17 +49,27 @@ pub struct Birthday {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Github {
     pub username: String,
-    pub msg: String,
+    #[serde(rename = "photoUrl")]
+    pub photo_url: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Twitter {
     pub username: String,
-    pub msg: String,
+    #[serde(rename = "photoUrl")]
+    pub photo_url: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Website {
     pub url: String,
-    pub msg: String,
+    #[serde(rename = "photoUrl")]
+    pub photo_url: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Sponser {
+    pub url: String,
+    #[serde(rename = "photoUrl")]
+    pub photo_url: String,
 }

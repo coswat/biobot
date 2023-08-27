@@ -10,7 +10,7 @@ pub async fn init(bot: Bot, msg: Message) -> Result<(), Box<dyn std::error::Erro
         _ if button.bio == *text => bio::bio(&bot, &msg, contents).await?,
         _ if button.back == *text => bio::welcome(bot, msg).await?,
         _ if button.username == *text => bio::username(&bot, &msg, contents).await?,
-        _ if button.friends == *text => bio::friends(&bot, &msg, contents).await?,
+        _ if button.sponser == *text => bio::sponser(&bot, &msg, contents).await?,
         _ if button.github == *text => bio::github(&bot, &msg, contents).await?,
         _ if button.twitter == *text => bio::twitter(&bot, &msg, contents).await?,
         _ if button.website == *text => bio::website(&bot, &msg, contents).await?,

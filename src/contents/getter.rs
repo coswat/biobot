@@ -1,4 +1,4 @@
-use crate::contents::{Buttons, ResponseContent};
+use crate::contents::{Buttons, ResponseContent, Sponser};
 use serde_json::from_str;
 use std::env;
 use std::fs;
@@ -17,4 +17,12 @@ pub async fn get_buttons() -> Buttons {
     let json = fs::read_to_string(path).expect("Unable to read file");
     let buttons = from_str::<Buttons>(&json).unwrap();
     buttons
+}
+
+pub async fn get_sponser_data() -> Sponser {
+    let mut path = env::current_dir().expect("Unable to load path");
+    path.push("json/sponser.json");
+    let json = fs::read_to_string(path).expect("Unable to read file");
+    let sponser_data = from_str::<Sponser>(&json).unwrap();
+    sponser_data
 }

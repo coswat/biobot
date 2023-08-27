@@ -1,17 +1,20 @@
 {
     "username": "coswat",
-    "friends": "Currently no one 😅",
+    "sponser": {
+        "url": "https://github.com/sponsors/coswat",
+        "photoUrl": ""
+    },
     "github": {
         "username": "coswat",
-        "msg": "My official Github account"
+        "photoUrl": "https://t.me/is_int/12"
     },
     "twitter": {
         "username": "coswatX",
-        "msg": "My official Twitter account"
+        "photoUrl": "https://t.me/is_int/11"
     },
     "website": {
         "url": "https://coswat.vercel.app",
-        "msg": "Dont be mad at me 🥺"
+        "photoUrl": "https://t.me/is_int/13"
     },
 
     "realName": "Abhishek B",
@@ -34,5 +37,5 @@
 
     "welcomeMessage": "Welcome to Bio",
     "errorMessage": "Invalid Message 💀",
-    "welcomeSticker": "CAACAgIAAxkBAAEB_x9k1l2EdUiuKNLN_guQXp8I4hjGVgACQhAAAjPFKUmQDtQRpypKgjAE"
+    "sponserImage": "https://t.me/is_int/15"
 }

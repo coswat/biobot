@@ -1,12 +1,14 @@
 use crate::command::{Command, State};
 use crate::contents::ResponseContent;
 use crate::keyboard;
+use std::error::Error;
 use teloxide::{
     dispatching::dialogue::InMemStorage,
     prelude::*,
     types::{InputFile, ParseMode},
     utils::command::BotCommands,
 };
+use url::Url;
 
 pub async fn welcome(
     bot: Bot,
@@ -16,6 +18,7 @@ pub async fn welcome(
     let sticker = InputFile::file_id(
         "CAACAgIAAxkBAAEB_x9k1l2EdUiuKNLN_guQXp8I4hjGVgACQhAAAjPFKUmQDtQRpypKgjAE".to_string(),
     );
+    bot.set_my_commands(Command::bot_commands()).await?;
     bot.send_sticker(msg.chat.id, sticker).await?;
     bot.send_message(msg.chat.id, "Welcome")
         .parse_mode(ParseMode::Html)
@@ -44,15 +47,20 @@ pub async fn username(bot: &Bot, msg: &Message, cnt: ResponseContent) -> Respons
     Ok(())
 }
 
-pub async fn friends(bot: &Bot, msg: &Message, cnt: ResponseContent) -> ResponseResult<()> {
-    bot.send_message(msg.chat.id, cnt.friends).await?;
+pub async fn sponser(bot: &Bot, msg: &Message, cnt: ResponseContent) -> ResponseResult<()> {
+    let buttons = keyboard::sponser_items().await;
+    let image_url = Url::parse(cnt.sponser_image.as_str()).unwrap();
+    bot.send_photo(msg.chat.id, InputFile::url(image_url))
+        .reply_markup(buttons)
+        .await?;
     Ok(())
 }
 
 pub async fn github(bot: &Bot, msg: &Message, cnt: ResponseContent) -> ResponseResult<()> {
     let github_link = format!("https://github.com/{}", cnt.github.username);
     let keyboard = keyboard::create_inline_url(github_link).await;
-    bot.send_message(msg.chat.id, cnt.github.msg)
+    let file_url = Url::parse(cnt.github.photo_url.as_str()).unwrap();
+    bot.send_photo(msg.chat.id, InputFile::url(file_url))
         .reply_markup(keyboard)
         .await?;
     Ok(())
@@ -61,7 +69,8 @@ pub async fn github(bot: &Bot, msg: &Message, cnt: ResponseContent) -> ResponseR
 pub async fn twitter(bot: &Bot, msg: &Message, cnt: ResponseContent) -> ResponseResult<()> {
     let twitter_link = format!("https://x.com/{}", cnt.twitter.username);
     let keyboard = keyboard::create_inline_url(twitter_link).await;
-    bot.send_message(msg.chat.id, cnt.twitter.msg)
+    let file_url = Url::parse(cnt.twitter.photo_url.as_str()).unwrap();
+    bot.send_photo(msg.chat.id, InputFile::url(file_url))
         .reply_markup(keyboard)
         .await?;
     Ok(())
@@ -69,7 +78,8 @@ pub async fn twitter(bot: &Bot, msg: &Message, cnt: ResponseContent) -> Response
 
 pub async fn website(bot: &Bot, msg: &Message, cnt: ResponseContent) -> ResponseResult<()> {
     let keyboard = keyboard::create_inline_url(cnt.website.url).await;
-    bot.send_message(msg.chat.id, cnt.website.msg)
+    let file_url = Url::parse(cnt.website.photo_url.as_str()).unwrap();
+    bot.send_photo(msg.chat.id, InputFile::url(file_url))
         .reply_markup(keyboard)
         .await?;
     Ok(())
@@ -123,7 +133,7 @@ pub async fn hobbies(bot: &Bot, msg: &Message, cnt: ResponseContent) -> Response
     Ok(())
 }
 
-pub async fn help(bot: Bot, msg: Message) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+pub async fn help(bot: Bot, msg: Message) -> Result<(), Box<dyn Error + Send + Sync>> {
     bot.send_message(msg.chat.id, Command::descriptions().to_string())
         .await?;
     Ok(())
@@ -133,7 +143,7 @@ pub async fn cancel(
     bot: Bot,
     dialogue: Dialogue<State, InMemStorage<State>>,
     msg: Message,
-) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+) -> Result<(), Box<dyn Error + Send + Sync>> {
     bot.send_message(msg.chat.id, "Cancelling ongoing action.")
         .await?;
     dialogue.exit().await?;

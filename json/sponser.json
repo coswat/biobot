@@ -1,0 +1,33 @@
+{
+    "currency": "USD",
+    "item1": {
+       "name": "Cherry Bunny",
+       "price": 1,
+       "description": "Sponser Cherry Bunnies ",
+       "imageUrl": "https://github-production-user-asset-6210df.s3.amazonaws.com/97345827/263524075-255d678b-2c9f-43e7-b66b-76afb32ffb32.jpg"
+    },
+    "item2": {
+       "name": "Candy Floss",
+       "price": 2,
+       "description": "The childhood memory kids favorite, Sponser Candy Floss",
+       "imageUrl": "https://github-production-user-asset-6210df.s3.amazonaws.com/97345827/263522719-f57d39c3-aa3d-4aee-9a1b-a80fe662bc93.jpg"
+    },
+    "item3": {
+       "name": "Bubblegum",
+       "price": 5,
+       "description": "All time favorite, Sponser Bubblegum",
+       "imageUrl": "https://github-production-user-asset-6210df.s3.amazonaws.com/97345827/263523973-b2b78d21-7aca-4053-9787-d0ebb9237ae6.jpg"
+    },
+    "item4": {
+       "name": "Raspberry",
+       "price": 10,
+       "description": "Fresh from tree! Sponser Raspberries",
+       "imageUrl": "https://github-production-user-asset-6210df.s3.amazonaws.com/97345827/263523861-8794a393-95b6-4582-a530-d75bbba4fb23.jpg"
+    },
+    "item5": {
+       "name": "Strike",
+       "price": 100,
+       "description": "The ultimate power, Sponser Strike",
+       "imageUrl": "https://github-production-user-asset-6210df.s3.amazonaws.com/97345827/263532721-3083b483-9fa6-40ee-9a30-892505e4274d.jpeg"
+    }
+}
