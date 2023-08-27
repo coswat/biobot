@@ -46,4 +46,4 @@ then
 cargo run --release
 ```
 
-![Bio Bot](https://github-production-user-asset-6210df.s3.amazonaws.com/97345827/263537735-487e779b-2f1c-4c54-86c5-76a4441acdca.jpg)
+![Bio Bot](https://github-production-user-asset-6210df.s3.amazonaws.com/97345827/263542767-4d1e78a0-315a-4f1c-a94c-20a0416c24ae.jpg)
