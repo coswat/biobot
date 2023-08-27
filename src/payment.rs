@@ -2,7 +2,7 @@ use crate::contents::{get_sponser_data, Item};
 use std::env;
 use std::error::Error;
 use teloxide::{
-    payloads::SendInvoiceSetters,
+    payloads::{AnswerPreCheckoutQuerySetters, SendInvoiceSetters},
     prelude::Requester,
     types::{CallbackQuery, ChatId, LabeledPrice, PreCheckoutQuery},
     Bot,
@@ -13,7 +13,9 @@ pub async fn pre_checkout_handler(
     bot: Bot,
     query: PreCheckoutQuery,
 ) -> Result<(), Box<dyn Error + Send + Sync>> {
-    bot.answer_pre_checkout_query(query.id, true).await?;
+    bot.answer_pre_checkout_query(query.id, false)
+        .error_message("Sponser me in Github instead")
+        .await?;
     Ok(())
 }
 
