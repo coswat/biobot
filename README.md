@@ -1,6 +1,6 @@
 ## Telgeram Bio Bot
 
-Highly custamisable bio bot using Rust, ( teloxid x tokio ) specially designed for programmers
+Highly custamisable bio bot using Rust, ( teloxide x tokio ) specially designed for programmers
 
 [Demo Bot](https://telegram.dog/coswatbot)
 
