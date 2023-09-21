@@ -51,7 +51,7 @@ pub async fn bio() -> KeyboardMarkup {
 pub async fn create_inline_url(link: String) -> InlineKeyboardMarkup {
     let url = Url::parse(link.as_str()).unwrap();
     let button = InlineKeyboardButton::url("Open Link", url.clone());
-    let button2 = InlineKeyboardButton::web_app("View Inline", WebAppInfo { url: url.clone() });
+    let button2 = InlineKeyboardButton::web_app("View Inline", WebAppInfo { url });
     InlineKeyboardMarkup::default()
         .append_row(vec![button])
         .append_row(vec![button2])
