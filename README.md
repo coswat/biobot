@@ -8,7 +8,7 @@ Key features
 
 - Custamisable Buttons
 - Custamisable Responses
-- Custom sponsed button
+- A custom sponser button
 - Integrated with Telegram Payments
 
 ## Setup
