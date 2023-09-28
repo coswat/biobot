@@ -1,6 +1,5 @@
 use crate::contents::{get_sponser_data, Item};
-use std::env;
-use std::error::Error;
+use std::{env, error::Error};
 use teloxide::{
     payloads::SendInvoiceSetters,
     prelude::Requester,

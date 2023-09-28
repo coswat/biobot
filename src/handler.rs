@@ -1,5 +1,7 @@
-use crate::bio;
-use crate::contents::{get_buttons, get_contents, Buttons, ResponseContent};
+use crate::{
+    bio,
+    contents::{get_buttons, get_contents, Buttons, ResponseContent},
+};
 use teloxide::{types::Message, Bot};
 
 pub async fn init(bot: Bot, msg: Message) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {

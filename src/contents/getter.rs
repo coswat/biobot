@@ -1,7 +1,6 @@
 use crate::contents::{Buttons, ResponseContent, Sponser};
 use serde_json::from_str;
-use std::env;
-use std::fs;
+use std::{env, fs};
 
 pub async fn get_contents() -> ResponseContent {
     let mut path = env::current_dir().expect("Unable to load path");

@@ -1,6 +1,9 @@
-use crate::command::{Command, State};
-use crate::contents::ResponseContent;
-use crate::keyboard;
+use crate::{
+    command::{Command, State},
+    contents::{get_sponser_data, ResponseContent},
+    keyboard,
+};
+
 use std::error::Error;
 use teloxide::{
     dispatching::dialogue::InMemStorage, prelude::*, types::InputFile, utils::command::BotCommands,
@@ -43,11 +46,17 @@ pub async fn username(bot: &Bot, msg: &Message, cnt: ResponseContent) -> Respons
 }
 
 pub async fn sponser(bot: &Bot, msg: &Message, cnt: ResponseContent) -> ResponseResult<()> {
-    let buttons = keyboard::sponser_items().await;
-    let image_url = Url::parse(cnt.sponser_image.as_str()).unwrap();
-    bot.send_photo(msg.chat.id, InputFile::url(image_url))
-        .reply_markup(buttons)
-        .await?;
+    let sponser_data = get_sponser_data().await;
+    if sponser_data.enabled {
+        let buttons = keyboard::sponser_items(sponser_data).await;
+        let image_url = Url::parse(cnt.sponser_image.as_str()).unwrap();
+        bot.send_photo(msg.chat.id, InputFile::url(image_url))
+            .reply_markup(buttons)
+            .await?;
+    } else {
+        bot.send_message(msg.chat.id, "Sponser option is currently locked")
+            .await?;
+    }
     Ok(())
 }
 

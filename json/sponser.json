@@ -1,4 +1,5 @@
 {
+    "enabled": false,
     "currency": "USD",
     "item1": {
        "name": "Cherry Bunny",

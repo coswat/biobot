@@ -1,4 +1,4 @@
-use crate::contents::{get_buttons, get_sponser_data};
+use crate::contents::{get_buttons, Sponser};
 use teloxide::types::{
     InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton, KeyboardMarkup, WebAppInfo,
 };
@@ -57,8 +57,8 @@ pub async fn create_inline_url(link: String) -> InlineKeyboardMarkup {
         .append_row(vec![button2])
 }
 
-pub async fn sponser_items() -> InlineKeyboardMarkup {
-    let sponser = get_sponser_data().await;
+pub async fn sponser_items(sponser: Sponser) -> InlineKeyboardMarkup {
+    // let sponser = get_sponser_data().await;
     let button = vec![
         InlineKeyboardButton::callback(sponser.item1.name, "item1"),
         InlineKeyboardButton::callback(sponser.item2.name, "item2"),

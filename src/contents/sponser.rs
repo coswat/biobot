@@ -2,6 +2,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Sponser {
+    pub enabled: bool,
     pub currency: String,
     pub item1: Item,
     pub item2: Item,
