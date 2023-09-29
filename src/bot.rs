@@ -1,10 +1,10 @@
-use crate::bio;
-use crate::command::{Command, State};
-use crate::handler as bothandler;
-use crate::payment;
+use crate::{
+    bio,
+    command::{Command, State},
+    handler as bothandler, payment,
+};
 use dotenv::dotenv;
-use std::env;
-use std::error::Error;
+use std::{env, error::Error};
 use teloxide::{
     dispatching::{dialogue, dialogue::InMemStorage, UpdateHandler},
     prelude::*,

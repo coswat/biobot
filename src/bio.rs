@@ -12,7 +12,7 @@ use url::Url;
 
 pub async fn welcome(
     bot: Bot,
-    msg: Message,
+    msg: &Message,
 ) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     let keyboard = keyboard::default().await;
     let sticker = InputFile::file_id(
